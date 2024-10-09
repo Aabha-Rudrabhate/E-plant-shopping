@@ -9,9 +9,14 @@ const CartItem = ({ onContinueShopping }) => {
 
   // Calculate total amount for all products in the cart
   const calculateTotalAmount = () => {
+    console.log("Cart contents:", cart); // Log the cart items to see their values
     return cart.reduce((total, item) => {
-      return total + item.cost * item.quantity;
-    }, 0).toFixed(2); // ToFixed ensures the total is a string with 2 decimal places
+        const itemCost = parseFloat(item.cost.replace('$', ''));
+        const itemQuantity = item.quantity;
+        console.log("Item contents:", itemCost);
+        return total + itemCost * itemQuantity;
+    }, 0).toFixed(2);
+    
   };
 
   const handleContinueShopping = () => {
